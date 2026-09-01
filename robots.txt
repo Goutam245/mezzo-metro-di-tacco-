@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /pannello/
+Disallow: /api/
+
+Sitemap: https://www.mezzometroditacco.it/sitemap.xml
