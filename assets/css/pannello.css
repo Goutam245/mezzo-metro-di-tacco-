@@ -1,0 +1,160 @@
+/* =========================================================================
+   Pannello di Mezzo Metro di Tacco — versione C
+   Solo per Johnny e Claudia: niente effetti, tutto grande e leggibile.
+   ========================================================================= */
+@font-face {
+  font-family: "Fredoka";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/fredoka-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Plex";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url("../fonts/plexsans-latin.woff2") format("woff2");
+}
+
+:root {
+  --corallo: #d93a17;
+  --corallo-cupo: #c9300f;
+  --mare: #0b5461;
+  --mare-cupo: #08313a;
+  --sole: #ffc24b;
+  --conchiglia: #fff6ef;
+  --sabbia: #ffe9d8;
+  --bianco: #fff;
+  --inchiostro: #08313a;
+  --fumo: #4a6167;
+  --verde: #1f7a4d;
+  --raggio: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--conchiglia); color: var(--inchiostro);
+  font-family: "Plex", system-ui, sans-serif; font-size: 16px; line-height: 1.55;
+}
+h1, h2, h3 { font-family: "Fredoka", system-ui, sans-serif; font-weight: 600; margin: 0 0 .5rem; line-height: 1.15; }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+p { margin: 0 0 .8rem; }
+a { color: var(--corallo-cupo); }
+img { max-width: 100%; display: block; }
+
+.p-involucro { width: min(1100px, 100% - 1.6rem); margin-inline: auto; }
+
+/* ── testata ─────────────────────────────────────────────────────────── */
+.p-testata {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--mare); color: #fff; padding: .7rem 0;
+}
+.p-testata__riga { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; justify-content: space-between; }
+.p-testata h1 { font-size: 1.15rem; margin: 0; color: #fff; }
+.p-stato { font-size: .85rem; color: #b8e0e4; }
+.p-stato--sporco { color: var(--sole); font-weight: 600; }
+
+/* ── pulsanti ────────────────────────────────────────────────────────── */
+.p-bottone {
+  font-family: "Fredoka", sans-serif; font-weight: 600; font-size: .95rem;
+  border: none; border-radius: 99px; padding: .6rem 1.1rem; cursor: pointer;
+  background: var(--bianco); color: var(--mare); box-shadow: inset 0 0 0 2px var(--sabbia);
+}
+.p-bottone:hover { box-shadow: inset 0 0 0 2px var(--corallo); }
+.p-bottone--forte { background: var(--corallo); color: #fff; box-shadow: none; }
+.p-bottone--forte:hover { background: var(--corallo-cupo); }
+.p-bottone--sole { background: var(--sole); color: var(--mare-cupo); box-shadow: none; }
+.p-bottone--piccolo { padding: .38rem .75rem; font-size: .85rem; }
+.p-bottone--male { color: #a12112; box-shadow: inset 0 0 0 2px #f0c4bb; background: #fff; }
+.p-bottone--male:hover { background: #fdeeeb; box-shadow: inset 0 0 0 2px #a12112; }
+.p-bottoni { display: flex; flex-wrap: wrap; gap: .5rem; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visible {
+  outline: 3px solid var(--sole); outline-offset: 2px;
+}
+
+/* ── schede del pannello ─────────────────────────────────────────────── */
+.p-sezione {
+  background: var(--bianco); border-radius: var(--raggio);
+  padding: 1.1rem; margin: 1.1rem 0;
+  box-shadow: 0 8px 22px -18px rgba(8, 49, 58, .8);
+}
+.p-sezione > h2 { border-bottom: 2px solid var(--sabbia); padding-bottom: .5rem; }
+.p-aiuto { font-size: .85rem; color: var(--fumo); }
+
+.p-campo { display: block; margin-bottom: .9rem; }
+.p-campo > span { display: block; font-weight: 600; font-size: .9rem; margin-bottom: .25rem; }
+.p-campo input[type="text"], .p-campo input[type="password"], .p-campo textarea, .p-campo select {
+  width: 100%; font: inherit; padding: .55rem .7rem;
+  border: 2px solid var(--sabbia); border-radius: 10px; background: var(--conchiglia);
+  color: var(--inchiostro);
+}
+.p-campo textarea { min-height: 76px; resize: vertical; }
+.p-riga { display: grid; gap: .8rem; }
+.p-interruttore { display: flex; align-items: center; gap: .55rem; font-weight: 600; margin-bottom: .8rem; }
+.p-interruttore input { width: 20px; height: 20px; accent-color: var(--corallo); }
+
+/* ── elenchi ─────────────────────────────────────────────────────────── */
+.p-elenco { display: grid; gap: .5rem; }
+.p-voce {
+  display: flex; align-items: center; gap: .7rem;
+  background: var(--conchiglia); border-radius: 12px; padding: .5rem .7rem;
+}
+.p-voce img { width: 52px; height: 52px; object-fit: cover; border-radius: 8px; background: #eee; flex: none; }
+.p-voce__testo { flex: 1; min-width: 0; }
+.p-voce__testo b { display: block; font-size: .96rem; }
+.p-voce__testo small { color: var(--fumo); }
+.p-voce--spento { opacity: .55; }
+.p-etichetta {
+  font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+  background: var(--sabbia); color: var(--mare); border-radius: 99px; padding: .12rem .5rem;
+}
+.p-etichetta--spenta { background: #f0ded6; color: #a12112; }
+
+.p-cerca { display: grid; gap: .6rem; margin-bottom: .9rem; }
+
+/* ── finestra ────────────────────────────────────────────────────────── */
+.p-finestra {
+  position: fixed; inset: 0; z-index: 40; background: rgba(8, 49, 58, .55);
+  display: grid; place-items: center; padding: 1rem;
+}
+.p-finestra[hidden] { display: none; }
+.p-finestra__carta {
+  background: var(--bianco); border-radius: var(--raggio);
+  width: min(680px, 100%); max-height: 92vh; overflow: auto; padding: 1.2rem;
+}
+.p-finestra__testa { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+
+.p-varianti { display: grid; gap: .5rem; margin-bottom: .8rem; }
+.p-variante { display: flex; align-items: center; gap: .6rem; background: var(--conchiglia); border-radius: 12px; padding: .5rem; }
+.p-variante img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; flex: none; }
+.p-variante input { flex: 1; min-width: 0; font: inherit; padding: .4rem .6rem; border: 2px solid var(--sabbia); border-radius: 8px; }
+
+/* ── avvisi ──────────────────────────────────────────────────────────── */
+.p-avviso {
+  position: fixed; left: 50%; bottom: 1.2rem; transform: translateX(-50%); z-index: 50;
+  background: var(--verde); color: #fff; border-radius: 99px; padding: .7rem 1.3rem;
+  font-weight: 600; box-shadow: 0 12px 30px -14px rgba(0, 0, 0, .6); max-width: 92vw; text-align: center;
+}
+.p-avviso--male { background: #a12112; }
+.p-nota {
+  background: var(--sabbia); border-left: 5px solid var(--corallo);
+  border-radius: 10px; padding: .7rem .9rem; font-size: .9rem; margin-bottom: 1rem;
+}
+
+/* ── utilità ─────────────────────────────────────────────────────────── */
+.p-spazio { margin-top: 1rem; }
+.p-spazio-piccolo { margin-top: .8rem; }
+.p-interruttore--fondo { align-self: end; margin-bottom: 1rem; }
+
+/* ── accesso ─────────────────────────────────────────────────────────── */
+.p-accesso { display: grid; place-items: center; min-height: 70vh; }
+.p-accesso__carta { background: var(--bianco); border-radius: var(--raggio); padding: 1.6rem; width: min(420px, 100%); box-shadow: 0 14px 34px -22px rgba(8, 49, 58, .9); }
+.p-errore { color: #a12112; font-weight: 600; }
+
+@media (min-width: 700px) {
+  .p-riga--due { grid-template-columns: 1fr 1fr; }
+  .p-riga--tre { grid-template-columns: 1fr 1fr 1fr; }
+}
